@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+  width: 20rem;
+  font-size: 1.6rem;
+  box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+
+  .header {
+    padding: 1.6rem;
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--header-bg-color);
+    border-radius: 0.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & > ul {
+    position: absolute;
+    list-style: none;
+    background-color: var(--header-bg-color);
+    padding: 1.6rem;
+    border-radius: 0.4rem;
+    width: 100%;
+    line-height: 1.6;
+    margin-top: 0.4rem;
+    transition: display 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    &.active {
+      display: block;
+    }
+
+    &.inactive {
+      display: none;
+    }
+  }
+}

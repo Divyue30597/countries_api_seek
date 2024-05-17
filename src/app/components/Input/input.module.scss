@@ -1,0 +1,35 @@
+.input_wrapper {
+  position: relative;
+  width: 100%;
+
+  .input {
+    padding: 2rem 2rem 2rem 6.4rem;
+    border: none;
+    background-color: var(--header-bg-color);
+    width: 100%;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
+    color: var(--font-color);
+    outline: none;
+
+    &::placeholder {
+      color: var(--font-color);
+      opacity: 0.8;
+      font-weight: 400;
+    }
+  }
+
+  .img {
+    position: absolute;
+    z-index: 2;
+    left: 2.3rem;
+    top: 2rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .input_wrapper {
+    width: min(calc(100% / 2), 48rem);
+  }
+}

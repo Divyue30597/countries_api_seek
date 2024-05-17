@@ -1,0 +1,19 @@
+.country_detail {
+  margin-top: 5rem;
+  display: grid;
+
+  .image {
+    & > img {
+      aspect-ratio: 16 / 9;
+      height: 100%;
+      width: 100%;
+      border-radius: 0.8rem;
+    }
+  }
+
+  .details_body {
+    margin-top: 5rem;
+  }
+
+
+}
