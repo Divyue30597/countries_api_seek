@@ -22,31 +22,39 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const getLanguages = () => {
     const keys = Object.keys(data.languages);
-    return keys.map((key, index) => {
-      return (
-        <span key={key}>
-          {data?.languages[key]}
-          {index !== keys.length - 1 && ", "}
-        </span>
-      );
-    });
+    return keys.length
+      ? keys.map((key, index) => {
+          return (
+            <span key={key}>
+              {data?.languages[key]}
+              {index !== keys.length - 1 && ", "}
+            </span>
+          );
+        })
+      : "NA";
   };
 
   const getCurrencies = () => {
     const keys = Object.keys(data.currencies);
-    return keys.map((key, index) => {
-      return (
-        <span>
-          {data?.currencies[key].name}
-          {index !== keys.length - 1 && ", "}
-        </span>
-      );
-    });
+    return keys.length
+      ? keys?.map((key, index) => {
+          return (
+            <span>
+              {data?.currencies[key].name}
+              {index !== keys.length - 1 && ", "}
+            </span>
+          );
+        })
+      : "NA";
   };
 
   const getNativeNames = () => {
     const keys = Object.keys(data.name.nativeName);
-    return <span>{data?.name.nativeName[keys[0]].official}</span>;
+    return (
+      <span>
+        {keys.length ? data?.name?.nativeName[keys[0]]?.official : "NA"}
+      </span>
+    );
   };
 
   return (
@@ -71,26 +79,28 @@ export default async function Page({ params }: { params: { slug: string } }) {
               </p>
               <p>
                 Population:{" "}
-                <span>{data?.population.toLocaleString("en-US")}</span>
+                <span>{data?.population.toLocaleString("en-US") || "NA"}</span>
               </p>
               <p>
-                Region: <span>{data?.region}</span>
+                Region: <span>{data?.region || "NA"}</span>
               </p>
               <p>
-                Sub Region: <span>{data?.subregion}</span>
+                Sub Region: <span>{data?.subregion || "NA"}</span>
               </p>
               <p>
                 Capital:{" "}
-                {data?.capital.map((cap: string, index: number) => {
-                  return (
-                    <span key={`${cap.toLowerCase() + index}`}>{cap}</span>
-                  );
-                })}
+                {data?.capital.length
+                  ? data?.capital.map((cap: string, index: number) => {
+                      return (
+                        <span key={`${cap.toLowerCase() + index}`}>{cap}</span>
+                      );
+                    })
+                  : "NA"}
               </p>
             </div>
             <div className={styles.minor_details}>
               <p>
-                Top Level Domain: <span>{data?.tld}</span>
+                Top Level Domain: <span>{data?.tld || "NA"}</span>
               </p>
               <p>Currencies: {getCurrencies()}</p>
               <p>Languages: {getLanguages()}</p>

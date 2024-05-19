@@ -15,6 +15,7 @@ export default function CardSection({
 }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<any>();
 
   useEffect(() => {
     async function getData() {
@@ -24,6 +25,7 @@ export default function CardSection({
         setIsLoading(true);
       } catch (err) {
         console.error(err);
+        setError(err);
       } finally {
         setIsLoading(false);
       }
@@ -32,15 +34,15 @@ export default function CardSection({
     getData();
   }, []);
 
-  if (debounceVal.length >= 1) {
+  if (debounceVal.length >= 1 && !selectVal.length) {
     let newData = data.filter((country: any) => {
-      return country.name.official.includes(debounceVal);
+      return country?.name.official.includes(debounceVal);
     });
 
     return newData.length ? (
       <section className={styles.countries_grid}>
         {newData.map((country: any) => {
-          return <Card key={country.name.official} country={country} />;
+          return <Card key={country?.name.official} country={country} />;
         })}
       </section>
     ) : (
@@ -48,17 +50,39 @@ export default function CardSection({
     );
   }
 
-  if (selectVal.includes("region")) {
+  if (selectVal && !debounceVal.length) {
     let newData = data.filter((country: any) => {
-      return country.region.toLowerCase() === selectVal.split("/")[1];
+      return country?.region.toLowerCase() === selectVal;
     });
 
     return (
       <section className={styles.countries_grid}>
         {newData.map((country: any) => {
-          return <Card key={country.name.official} country={country} />;
+          return <Card key={country?.name.official} country={country} />;
         })}
       </section>
+    );
+  }
+
+  if (debounceVal.length && selectVal) {
+    let newData = data.filter((country: any) => {
+      return (
+        country?.region.toLowerCase() === selectVal &&
+        country?.name.official.toLowerCase().includes(debounceVal.toLowerCase())
+      );
+    });
+
+    return newData.length ? (
+      <section className={styles.countries_grid}>
+        {newData.map((country: any) => {
+          return <Card key={country?.name.official} country={country} />;
+        })}
+      </section>
+    ) : (
+      <h1>
+        The Country you are looking for is not present in{" "}
+        {selectVal[0].toUpperCase() + selectVal.slice(1)}.
+      </h1>
     );
   }
 
@@ -66,10 +90,14 @@ export default function CardSection({
     return <Loading />;
   }
 
+  if (error) {
+    return <h2>💣💥 There was some error! Try to reload the page.</h2>;
+  }
+
   return (
     <section className={styles.countries_grid}>
       {data.map((country: any) => {
-        return <Card key={country.name.official} country={country} />;
+        return <Card key={country?.name.official} country={country} />;
       })}
     </section>
   );

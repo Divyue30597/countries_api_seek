@@ -8,27 +8,27 @@ import { Dispatch, SetStateAction, useState } from "react";
 const regions = [
   {
     id: 1,
-    value: "region/africa",
+    value: "africa",
     name: "Africa",
   },
   {
     id: 2,
-    value: "region/americas",
+    value: "americas",
     name: "Americas",
   },
   {
     id: 3,
-    value: "region/asia",
+    value: "asia",
     name: "Asia",
   },
   {
     id: 4,
-    value: "region/europe",
+    value: "europe",
     name: "Europe",
   },
   {
     id: 5,
-    value: "region/oceania",
+    value: "oceania",
     name: "Oceania",
   },
 ];
@@ -44,11 +44,7 @@ export default function Dropdown({ selectVal, setSelectVal }: DropDownProps) {
   return (
     <div tabIndex={0} className={styles.dropdown}>
       <div className={styles.header} onClick={() => setIsOpen(!isOpen)}>
-        <p>
-          {selectVal.includes("/")
-            ? selectVal.split("/")[1]
-            : "Filter by Region"}
-        </p>
+        <p>{selectVal.length ? selectVal : "Filter by Region"}</p>
         <Image src={expand} alt="Expand list" />
       </div>
       <ul className={isOpen ? styles.active : styles.inactive}>

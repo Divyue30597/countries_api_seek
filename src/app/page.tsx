@@ -10,7 +10,7 @@ import CardSection from "./components/CardSection/page";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [selectVal, setSelectVal] = useState("all");
+  const [selectVal, setSelectVal] = useState("");
   const debounceVal = useDebounce<string>(input, 1000);
 
   return (
