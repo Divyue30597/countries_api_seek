@@ -3,7 +3,6 @@ import Container from "../components/Container/container";
 import ButtonNav from "../components/ButtonNav/buttonNav";
 import Image from "next/image";
 import Badge from "../components/Badge/badge";
-import styles_loading from "@/app/[slug]/loading.module.scss";
 
 async function getSingleCountry(params: string) {
   const res = await fetch(
@@ -39,7 +38,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return keys.length
       ? keys?.map((key, index) => {
           return (
-            <span>
+            <span key={key}>
               {data?.currencies[key].name}
               {index !== keys.length - 1 && ", "}
             </span>
@@ -111,7 +110,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
               <h2>Border Countries</h2>
               <div className={styles.country}>
                 {data?.borders.map((border: string) => {
-                  return <Badge cca3={border}>{border}</Badge>;
+                  return (
+                    <Badge key={border.toLowerCase()} cca3={border}>
+                      {border}
+                    </Badge>
+                  );
                 })}
               </div>
             </div>

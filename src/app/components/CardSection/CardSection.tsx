@@ -1,16 +1,18 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { getCountries } from "@/api/api";
+import { getCountries } from "@/lib/api";
 
 import styles from "./page.module.scss";
 
 import Card from "../Card/card";
 import Loading from "./loading";
 
-export default function CardSection({
-  debounceVal,
+function Page({
+  countryStr,
   selectVal,
 }: {
-  debounceVal: string;
+  countryStr: string | never;
   selectVal: string;
 }) {
   const [data, setData] = useState([]);
@@ -34,9 +36,9 @@ export default function CardSection({
     getData();
   }, []);
 
-  if (debounceVal.length >= 1 && !selectVal.length) {
+  if (countryStr.length >= 1 && !selectVal.length) {
     let newData = data.filter((country: any) => {
-      return country?.name.official.includes(debounceVal);
+      return country?.name.official.includes(countryStr);
     });
 
     return newData.length ? (
@@ -46,11 +48,11 @@ export default function CardSection({
         })}
       </section>
     ) : (
-      <h2>No Country with {debounceVal} found.</h2>
+      <h2>No Country with {countryStr} found.</h2>
     );
   }
 
-  if (selectVal && !debounceVal.length) {
+  if (selectVal && !countryStr.length) {
     let newData = data.filter((country: any) => {
       return country?.region.toLowerCase() === selectVal;
     });
@@ -64,11 +66,11 @@ export default function CardSection({
     );
   }
 
-  if (debounceVal.length && selectVal) {
+  if (countryStr.length && selectVal) {
     let newData = data.filter((country: any) => {
       return (
         country?.region.toLowerCase() === selectVal &&
-        country?.name.official.toLowerCase().includes(debounceVal.toLowerCase())
+        country?.name.official.toLowerCase().includes(countryStr.toLowerCase())
       );
     });
 
@@ -80,7 +82,8 @@ export default function CardSection({
       </section>
     ) : (
       <h1>
-        The Country you are looking for is not present in{" "}
+        The {countryStr} might not be a valid country or the country{" "}
+        {countryStr} you are looking for is not present in{" "}
         {selectVal[0].toUpperCase() + selectVal.slice(1)}.
       </h1>
     );
@@ -102,3 +105,5 @@ export default function CardSection({
     </section>
   );
 }
+
+export default Page;

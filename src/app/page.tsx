@@ -1,26 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import styles from "./page.module.scss";
 import Container from "./components/Container/container";
 import Input from "./components/Input/input";
 import Dropdown from "./components/DropDown/dropdown";
-import { useState } from "react";
-import useDebounce from "./hooks/useDebounce";
-import CardSection from "./components/CardSection/page";
+import CardSection from "./components/CardSection/CardSection";
 
 export default function Home() {
-  const [input, setInput] = useState("");
-  const [selectVal, setSelectVal] = useState("");
-  const debounceVal = useDebounce<string>(input, 1000);
+  const [countryStr, setCountryStr] = useState<string>("");
+  const [selectVal, setSelectVal] = useState<string>("");
 
   return (
     <main className={styles.main}>
       <Container>
         <section className={styles.input_fields}>
-          <Input input={input} setInput={setInput} />
+          <Input countryStr={countryStr} setCountryStr={setCountryStr} />
           <Dropdown selectVal={selectVal} setSelectVal={setSelectVal} />
         </section>
-        <CardSection debounceVal={debounceVal} selectVal={selectVal} />
+        <CardSection countryStr={countryStr} selectVal={selectVal} />
       </Container>
     </main>
   );

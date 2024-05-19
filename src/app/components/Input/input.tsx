@@ -5,19 +5,19 @@ import Image from "next/image";
 import { HTMLProps, useState } from "react";
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
-  input: string;
-  setInput: React.Dispatch<React.SetStateAction<string>>;
+  countryStr: string;
+  setCountryStr: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function Input({ input, setInput }: InputProps) {
+export default function Input({ countryStr, setCountryStr }: InputProps) {
   return (
     <div className={styles.input_wrapper}>
       <Image className={styles.img} src={search} alt="Search Icon" />
       <input
         className={styles.input}
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={countryStr}
+        onChange={(e) => setCountryStr(e.target.value)}
         placeholder="Search for a country..."
         autoComplete="off"
       />
