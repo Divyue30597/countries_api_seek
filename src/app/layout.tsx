@@ -4,7 +4,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/context/ThemeContext";
 import Navbar from "./components/Navbar/navbar";
 
-const nunito_sans = Nunito_Sans({ subsets: ["latin"] });
+const nunito_sans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["300", "600", "800"],
+});
 
 export const metadata: Metadata = {
   title: "World Countries",
@@ -17,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" color-scheme="dark">
       <head>
         <meta name="color-scheme" content="dark light" />
       </head>

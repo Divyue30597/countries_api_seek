@@ -1,36 +1,26 @@
+"use client";
+
 import styles from "./page.module.scss";
-import Card from "./components/Card/card";
 import Container from "./components/Container/container";
 import Input from "./components/Input/input";
 import Dropdown from "./components/DropDown/dropdown";
+import { useState } from "react";
+import useDebounce from "./hooks/useDebounce";
+import CardSection from "./components/CardSection/page";
 
-async function getCountries() {
-  const res = await fetch(
-    "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3"
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
-
-export default async function Home() {
-  const data = await getCountries();
+export default function Home() {
+  const [input, setInput] = useState("");
+  const [selectVal, setSelectVal] = useState("all");
+  const debounceVal = useDebounce<string>(input, 1000);
 
   return (
     <main className={styles.main}>
       <Container>
-        <div className={styles.input_fields}>
-          <Input />
-          <Dropdown />
-        </div>
-        <div className={styles.countries_grid}>
-          {data.map((country: any) => {
-            return <Card key={country.name.official} country={country} />;
-          })}
-        </div>
+        <section className={styles.input_fields}>
+          <Input input={input} setInput={setInput} />
+          <Dropdown selectVal={selectVal} setSelectVal={setSelectVal} />
+        </section>
+        <CardSection debounceVal={debounceVal} selectVal={selectVal} />
       </Container>
     </main>
   );

@@ -1,36 +1,45 @@
-.card {
-  background-color: var(--header-bg-color);
-  color: var(--font-color);
-  border-radius: 0.4rem;
-  box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+.card_link {
+  text-decoration: none;
 
-  .image {
-    & > img {
-      aspect-ratio: 16 / 10;
-      width: 100%;
-      height: 100%;
-      border-top-left-radius: 0.4rem;
-      border-top-right-radius: 0.4rem;
-    }
-  }
+  .card {
+    background-color: var(--header-bg-color);
+    color: var(--font-color);
+    border-radius: 0.4rem;
+    box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
+    transition: transform 350ms;
 
-  .body {
-    padding: 2rem;
-
-    .country_name {
-      font-weight: 700;
-      margin-bottom: 2rem;
-      font-size: 1.8rem;
-    }
-
-    .country_detail {
-      font-weight: 500;
-      font-size: 1.4rem;
-
-      & > p > span {
-        font-weight: 200;
+    .image {
+      & > img {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
       }
+    }
+
+    .body {
+      padding: 2rem;
+      text-decoration: none;
+
+      .country_name {
+        font-weight: 700;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+      }
+
+      .country_detail {
+        font-weight: 500;
+        font-size: 1.4rem;
+
+        & > p > span {
+          font-weight: 200;
+        }
+      }
+    }
+
+    &:hover {
+      transform: scale(1.05);
     }
   }
 }

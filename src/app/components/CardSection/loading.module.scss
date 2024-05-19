@@ -1,0 +1,77 @@
+.outer_skeleton {
+  display: grid;
+  max-width: 144rem;
+  margin-inline: auto;
+
+  .skeleton {
+    animation: skeleton 1000ms infinite;
+
+    .skeleton_image {
+      background-color: #e5e4e2;
+      height: 16rem;
+      border-radius: 0.8rem;
+    }
+
+    .skeleton_body {
+      padding: 2rem 0rem;
+      .skeleton_heading {
+        height: 1.8rem;
+        background-color: #e5e4e2;
+        border-radius: 0.8rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .skeleton_para {
+        height: 1.4rem;
+        background-color: #e5e4e2;
+        border-radius: 0.8rem;
+
+        &:not(:last-child) {
+          margin-bottom: 0.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .outer_skeleton {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .outer_skeleton {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .outer_skeleton {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .outer_skeleton {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}

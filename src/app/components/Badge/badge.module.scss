@@ -1,17 +1,15 @@
-.btn {
+.badge {
+  border: none;
   background-color: var(--header-bg-color);
   padding: 1.2rem 3.2rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 0.4rem;
-  font-size: 1.6rem;
   box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
   color: var(--font-color);
   transition: color 350ms, background-color 350ms;
-
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
 
   &:hover,
   &:focus,
@@ -21,6 +19,6 @@
   }
 
   &:active {
-    outline: solid 0.8rem var(--header-bg-color);
+    outline: 0.8rem solid var(--header-bg-color);
   }
 }

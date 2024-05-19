@@ -12,11 +12,17 @@
     box-shadow: 0rem 0rem 2rem 0.6rem rgba(0, 0, 0, 0.1);
     color: var(--font-color);
     outline: none;
+    transition: outline 250ms;
 
     &::placeholder {
       color: var(--font-color);
       opacity: 0.8;
       font-weight: 400;
+    }
+
+    &:active,
+    &:focus {
+      outline: 0.4rem solid var(--font-color);
     }
   }
 
