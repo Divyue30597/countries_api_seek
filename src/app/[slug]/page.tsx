@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <ButtonNav />
       <div className={styles.country_detail}>
         <div className={styles.image}>
-          <Image
+          <img
             src={data?.flags.png}
             alt={data?.flags.alt}
             width={320}

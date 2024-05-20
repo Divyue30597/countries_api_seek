@@ -45,7 +45,23 @@ export default function Dropdown({ selectVal, setSelectVal }: DropDownProps) {
     <div tabIndex={0} className={styles.dropdown}>
       <div className={styles.header} onClick={() => setIsOpen(!isOpen)}>
         <p>{selectVal.length ? selectVal : "Filter by Region"}</p>
-        <Image src={expand} alt="Expand list" />
+        <svg
+          width="9"
+          height="7"
+          viewBox="0 0 9 7"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="expand-more">
+            <path
+              id="Shape"
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M6.875 0.875L4 3.75L1.125 0.875L0.25 1.75L4 5.5L7.75 1.75L6.875 0.875Z"
+              fill="#848484"
+            />
+          </g>
+        </svg>
       </div>
       <ul className={isOpen ? styles.active : styles.inactive}>
         {regions.map((region) => {

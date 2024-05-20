@@ -8,7 +8,7 @@ export default function Card({ country }: { country: any }) {
     <Link className={styles.card_link} href={`/${country.cca3}`}>
       <div className={styles.card}>
         <div className={styles.image}>
-          <Image
+          <img
             src={country.flags.png}
             alt={country.flags.alt}
             width={260}
