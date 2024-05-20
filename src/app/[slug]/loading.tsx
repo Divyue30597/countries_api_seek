@@ -25,7 +25,7 @@ export default function Loading() {
           <div className={styles.border_countries}>
             <div className={styles.border_heading}></div>
             <div className={styles.border_country}>
-              <div className={styles.country}>P</div>
+              <div className={styles.country}></div>
             </div>
           </div>
         </div>

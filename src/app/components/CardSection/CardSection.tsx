@@ -38,7 +38,9 @@ function Page({
 
   if (countryStr.length >= 1 && !selectVal.length) {
     let newData = data.filter((country: any) => {
-      return country?.name.official.includes(countryStr);
+      return country?.name?.official
+        ?.toLowerCase()
+        .includes(countryStr.toLowerCase());
     });
 
     return newData.length ? (
